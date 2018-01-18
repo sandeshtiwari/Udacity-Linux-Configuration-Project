@@ -31,3 +31,8 @@
 	- sudo ufw enable
 9) Configure the local timezone
 	- sudo dpkg-reconfigure tzdata
+10) Install and configure Apache to serve a Python mod_wsgi application
+	- Install Apache with sudo apt-get install apache2
+	- Install mod_wsgi sudo apt-get python-setuptools libapache2-mod-wsgi
+	- Restart Apache sudo service apache2 restart
+
