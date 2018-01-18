@@ -48,5 +48,24 @@
 		- GRANT ALL PRIVILEGES ON DATABASE restaurantMenu to admin
 	- Exit postgreSQL shell using \q
 	- Exit from 'postgres' user using 'exit' command
+12) Install git and setup the RestaurantMenu app project 
+	- Install Git using sudo apt-get install git
+	- cd /var/www
+	- create an app directory using sudo mkdir FlaskApp
+	- cd FlaskApp
+	- Clone the app from GitHub repo
+		- sudo git clone https://github.com/sandeshtiwari/Restaurant-Menu-App.git
+	- Rename the file using sudo mv ./Restaurant-Menu-App ./FlaskApp
+	- cd to inner FlaskApp using cd FlaskApp
+	- Edit database_setup.py and finalProject.py and change engine = create_engine('sqlite:///restaurantmenuwithusers.db')
+	  to engine = create_engine('postgresql://admin:admin@localhost/restaurantmenu')
+	- Rename finalProject.py to __init__.py by using sudo mv finalProject.py __init__.py
+	- Install pip with sudo apt-get install python-pip
+	- Install Flask pip install Flask
+	- Install other project dependencies
+		- sudo pip install httplib2 oauth2client sqlalchemy psycopg2 sqlalchemy_utils
+	- Create database shema using sudo python database_setup.py
+
+	
 
 
