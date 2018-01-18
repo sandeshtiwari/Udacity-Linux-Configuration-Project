@@ -35,4 +35,18 @@
 	- Install Apache with sudo apt-get install apache2
 	- Install mod_wsgi sudo apt-get python-setuptools libapache2-mod-wsgi
 	- Restart Apache sudo service apache2 restart
+11) Install and config PostgreSQL
+	- sudo apt-get install postgresql
+	- Login as user 'postgres' using sudo su - postgres
+	- Get to the postgreSQL shell using psql command
+	- Create a database a nd a new user
+		- CREATE DATABASE restaurantMenu;
+		- CREATE USER admin;
+	- Set password for the admin user
+		- ALTER ROLE admin WITH PASSWORD 'admin';
+	- Give user 'admin' permission to 'restaurantMenu' applicaition database
+		- GRANT ALL PRIVILEGES ON DATABASE restaurantMenu to admin
+	- Exit postgreSQL shell using \q
+	- Exit from 'postgres' user using 'exit' command
+
 
