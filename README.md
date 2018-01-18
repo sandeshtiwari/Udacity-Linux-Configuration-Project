@@ -24,3 +24,8 @@
 7) Update all packages currently installed
 	- sudo apt-get update
 	- sudo apt-get upgrade
+8) Configure Uncomplicated Firewall(UFW) to only allow connection for SSH(port 22), HTTP(port 80), and NTP(port 123)
+	- sudo ufw allow 22/tcp
+	- sudo ufw allow 80/tcp
+	- sudo ufw allow 123/udp
+	- sudo ufw enable
