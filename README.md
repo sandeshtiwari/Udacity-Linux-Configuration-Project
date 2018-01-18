@@ -11,5 +11,13 @@
 	- sudo nano /etc/sudoers.d/grader
 		- type this in grader ALL=(ALL:ALL) ALL, save and quit
 3) Generate keys on the local machine using ssh-keygen, and save the private key in the ~/.ssh on the local computer
-
-		
+4) On the remote server log in as grader using su - grader and do the following:
+	- mkdir .ssh
+	- touch .ssh/authorized_keys
+5) On the local machine open the .pub file from the .ssh directory and copy paste everything to the
+.ssh/authorized_keys file in the server, save and quit.
+6) Run the following commands on your remote server:
+	- chmod 700 .ssh
+	- chmod 644 .ssh/authorized_keys
+	- Now login to the server using this command
+		- ssh -i ~/.ssh/linuxConfig grader@18.218.155.245
