@@ -29,3 +29,5 @@
 	- sudo ufw allow 80/tcp
 	- sudo ufw allow 123/udp
 	- sudo ufw enable
+9) Configure the local timezone
+	- sudo dpkg-reconfigure tzdata
