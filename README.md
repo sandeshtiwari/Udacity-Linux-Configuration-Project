@@ -21,3 +21,6 @@
 	- chmod 644 .ssh/authorized_keys
 	- Now login to the server using this command
 		- ssh -i ~/.ssh/linuxConfig grader@18.218.155.245
+7) Update all packages currently installed
+	- sudo apt-get update
+	- sudo apt-get upgrade
