@@ -65,6 +65,18 @@
 	- Install other project dependencies
 		- sudo pip install httplib2 oauth2client sqlalchemy psycopg2 sqlalchemy_utils
 	- Create database shema using sudo python database_setup.py
+13) Create the .wsgi file
+	- cd /var/www/FlaskApp
+	- sudo nano flaskapp.wsgi
+	- Add the following code to the flaskapp.wsgi file
+		#!/usr/bin/python
+		import sys
+		import logging
+		logging.basicConfig(stream=sys.stderr)
+		sys.path.insert(0,"/var/www/FlaskApp/")
+
+		from FlaskApp import app as application
+		application.secret_key = 'super_secret_key'
 
 	
 
