@@ -105,6 +105,9 @@ installing/configuring web and database servers
 	'/var/www/FlaskApp/FlaskApp/client_secrets.json'
 16) Make sure that the client secrets file matches the Authorized JavaScript origins on the credentials page.
 	- Add the IP address to the list.
-	
+17) Disable root login:
+	- run sudo nano/etc/ssh/sshd_config
+	- change the PermitRootLogin without-password to PermitRootLogin no
+	- Also make sure to uncomment the "PasswordAuthentication no" line
 
 
