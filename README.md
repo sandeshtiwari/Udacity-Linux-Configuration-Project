@@ -114,4 +114,4 @@ installing/configuring web and database servers
 	- use sudo service ssh restart
 	- Make sure that port 2200 has been added to the external Lightsail firewall under the "Networking" tab.
 
-
+External references: https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
