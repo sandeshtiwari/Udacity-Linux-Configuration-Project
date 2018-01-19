@@ -40,12 +40,12 @@
 	- Login as user 'postgres' using sudo su - postgres
 	- Get to the postgreSQL shell using psql command
 	- Create a database a nd a new user
-		- CREATE DATABASE restaurantMenu;
+		- CREATE DATABASE restaurantmenu;
 		- CREATE USER admin;
 	- Set password for the admin user
 		- ALTER ROLE admin WITH PASSWORD 'admin';
-	- Give user 'admin' permission to 'restaurantMenu' applicaition database
-		- GRANT ALL PRIVILEGES ON DATABASE restaurantMenu to admin
+	- Give user 'admin' permission to 'restaurantmenu' applicaition database
+		- GRANT ALL PRIVILEGES ON DATABASE restaurantmenu to admin
 	- Exit postgreSQL shell using \q
 	- Exit from 'postgres' user using 'exit' command
 12) Install git and setup the RestaurantMenu app project 
@@ -61,9 +61,9 @@
 	  to engine = create_engine('postgresql://admin:admin@localhost/restaurantmenu')
 	- Rename finalProject.py to __init__.py by using sudo mv finalProject.py __init__.py
 	- Install pip with sudo apt-get install python-pip
-	- Install Flask pip install Flask
+	- Install Flask sudo -H pip install Flask
 	- Install other project dependencies
-		- sudo pip install httplib2 oauth2client sqlalchemy psycopg2 sqlalchemy_utils
+		- sudo -H pip install httplib2 oauth2client sqlalchemy psycopg2 sqlalchemy_utils requests
 	- Create database shema using sudo python database_setup.py
 13) Create the .wsgi file
 	- cd /var/www/FlaskApp
@@ -77,7 +77,28 @@
 
 		from FlaskApp import app as application
 		application.secret_key = 'super_secret_key'
-
+14) Configure 'nano /etc/apache2/sites-available/FlaskApp.conf' and add the following
+	<VirtualHost *:80>
+		ServerName 18.218.155.245
+		ServerAdmin sandeshtiwari@live.com
+		WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi
+		<Directory /var/www/FlaskApp/FlaskApp/>
+			Order allow,deny
+			Allow from all
+		</Directory>
+		Alias /static /var/www/FlaskApp/FlaskApp/static
+		<Directory /var/www/FlaskApp/FlaskApp/static/>
+			Order allow,deny
+			Allow from all
+		</Directory>
+		ErrorLog ${APACHE_LOG_DIR}/error.log
+		LogLevel warn
+		CustomLog ${APACHE_LOG_DIR}/access.log combined
+	</VirtualHost>
+	- Enable the host using sudo a2ensite FlaskApp
+	- sudo service apache2 restart
+15) Change the path for the client_secrets.json file everywhere
+	'/var/www/FlaskApp/FlaskApp/client_secrets.json'
 	
 
 
