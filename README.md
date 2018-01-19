@@ -99,6 +99,8 @@
 	- sudo service apache2 restart
 15) Change the path for the client_secrets.json file everywhere
 	'/var/www/FlaskApp/FlaskApp/client_secrets.json'
+16) Make sure that the client secrets file matches the Authorized JavaScript origins on the credentials page.
+	- Add the IP address to the list.
 	
 
 
