@@ -109,5 +109,9 @@ installing/configuring web and database servers
 	- run sudo nano/etc/ssh/sshd_config
 	- change the PermitRootLogin without-password to PermitRootLogin no
 	- Also make sure to uncomment the "PasswordAuthentication no" line
+18) Change the SSH port from 22 to 2200
+	- use sudo nano /etc/ssh/sshd_config and then change the Port 22 to Port 2200
+	- use sudo service ssh restart
+	- Make sure that port 2200 has been added to the external Lightsail firewall under the "Networking" tab.
 
 
