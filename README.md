@@ -6,9 +6,9 @@ installing/configuring web and database servers
 	-Download  the private key
 	-move the file into the ~/.ssh folder.
 	-Open the terminal and type chmod 600 ~/.ssh/LightsailDefaultPrivateKey-us-east-2.pem
-	-In your terminal type ssh -i ~/.ssh/LightsailDefaultPrivateKey-us-east-2.pem ubuntu@18.218.155.245
+	-In your terminal type ssh -i ~/.ssh/LightsailDefaultPrivateKey-us-east-2.pem ubuntu@18.218.171.145
 	-Development environment
-		- Public IP - 18.218.155.245
+		- Public IP - 18.218.171.145
 		- Private Key(not provided)
 2) Create a new user named grader
 	- sudo adduser grader
@@ -24,7 +24,7 @@ installing/configuring web and database servers
 	- chmod 700 .ssh
 	- chmod 644 .ssh/authorized_keys
 	- Now login to the server using this command
-		- ssh -i ~/.ssh/linuxConfig grader@18.218.155.245
+		- ssh -i ~/.ssh/myKey.rsa grader@18.218.171.145
 7) Update all packages currently installed
 	- sudo apt-get update
 	- sudo apt-get upgrade
@@ -104,7 +104,8 @@ installing/configuring web and database servers
 15) Change the path for the client_secrets.json file everywhere
 	'/var/www/FlaskApp/FlaskApp/client_secrets.json'
 16) Make sure that the client secrets file matches the Authorized JavaScript origins on the credentials page.
-	- Add the IP address to the list.
+	- Add the IP address to the list, eg. by visiting https://console.cloud.google.com/apis/credentials
+	- Also update the client_secret.json file or redownload it after adding the IP by visiting the same URL
 17) Disable root login:
 	- run sudo nano/etc/ssh/sshd_config
 	- change the PermitRootLogin without-password to PermitRootLogin no
@@ -113,5 +114,5 @@ installing/configuring web and database servers
 	- use sudo nano /etc/ssh/sshd_config and then change the Port 22 to Port 2200
 	- use sudo service ssh restart
 	- Make sure that port 2200 has been added to the external Lightsail firewall under the "Networking" tab.
-
+	- Make sure you remove SSH port 22 from the 'Networking' tab
 External references: https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
