@@ -15,7 +15,7 @@ installing/configuring web and database servers in AWS LightSail Ubuntu server.
 	- sudo nano /etc/sudoers.d/grader
 		- type this in grader ALL=(ALL:ALL) ALL, save and quit
 3) Generate keys on the local machine using ssh-keygen, and save the private key in the ~/.ssh on the local computer
-4) On the remote server log in as grader using su - grader and do the following:
+4) On the remote server log in root and do the following:
 	- mkdir .ssh
 	- touch .ssh/authorized_keys
 5) On the local machine open the .pub file from the .ssh directory and copy paste everything to the
