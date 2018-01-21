@@ -25,21 +25,33 @@ installing/configuring web and database servers
 	- chmod 644 .ssh/authorized_keys
 	- Now login to the server using this command
 		- ssh -i ~/.ssh/myKey.rsa grader@18.218.171.145
-7) Update all packages currently installed
+7) Disable root login:
+	- run sudo nano/etc/ssh/sshd_config
+	- change the PermitRootLogin without-password to PermitRootLogin no
+	- Also make sure to uncomment the "PasswordAuthentication no" line
+	- Now login to the server using this command
+		- ssh -i ~/.ssh/myKey.rsa grader@18.218.171.145
+		- Now we can use the grader user to access the server and use sudo when needed.
+8) Update all packages currently installed
 	- sudo apt-get update
 	- sudo apt-get upgrade
-8) Configure Uncomplicated Firewall(UFW) to only allow connection for SSH(port 22), HTTP(port 80), and NTP(port 123)
-	- sudo ufw allow 22/tcp
+9) Change the SSH port from 22 to 2200
+	- use sudo nano /etc/ssh/sshd_config and then change the Port 22 to Port 2200
+	- use sudo service ssh restart
+	- Make sure that port 2200 has been added to the external Lightsail firewall under the "Networking" tab.
+	- Make sure you remove SSH port 22 from the 'Networking' tab
+10) Configure Uncomplicated Firewall(UFW) to only allow connection for SSH(port 2200), HTTP(port 80), and NTP(port 123)
+	- sudo ufw allow 2200/tcp
 	- sudo ufw allow 80/tcp
 	- sudo ufw allow 123/udp
 	- sudo ufw enable
-9) Configure the local timezone
+11) Configure the local timezone
 	- sudo dpkg-reconfigure tzdata
-10) Install and configure Apache to serve a Python mod_wsgi application
+12) Install and configure Apache to serve a Python mod_wsgi application
 	- Install Apache with sudo apt-get install apache2
 	- Install mod_wsgi sudo apt-get python-setuptools libapache2-mod-wsgi
 	- Restart Apache sudo service apache2 restart
-11) Install and config PostgreSQL
+13) Install and config PostgreSQL
 	- sudo apt-get install postgresql
 	- Login as user 'postgres' using sudo su - postgres
 	- Get to the postgreSQL shell using psql command
@@ -52,7 +64,7 @@ installing/configuring web and database servers
 		- GRANT ALL PRIVILEGES ON DATABASE restaurantmenu to admin
 	- Exit postgreSQL shell using \q
 	- Exit from 'postgres' user using 'exit' command
-12) Install git and setup the RestaurantMenu app project 
+14) Install git and setup the RestaurantMenu app project 
 	- Install Git using sudo apt-get install git
 	- cd /var/www
 	- create an app directory using sudo mkdir FlaskApp
@@ -69,7 +81,7 @@ installing/configuring web and database servers
 	- Install other project dependencies
 		- sudo -H pip install httplib2 oauth2client sqlalchemy psycopg2 sqlalchemy_utils requests
 	- Create database shema using sudo python database_setup.py
-13) Create the .wsgi file
+15) Create the .wsgi file
 	- cd /var/www/FlaskApp
 	- sudo nano flaskapp.wsgi
 	- Add the following code to the flaskapp.wsgi file
@@ -81,7 +93,7 @@ installing/configuring web and database servers
 
 		from FlaskApp import app as application
 		application.secret_key = 'super_secret_key'
-14) Configure 'nano /etc/apache2/sites-available/FlaskApp.conf' and add the following
+16) Configure 'nano /etc/apache2/sites-available/FlaskApp.conf' and add the following
 	<VirtualHost *:80>
 		ServerName 18.218.155.245
 		ServerAdmin sandeshtiwari@live.com
@@ -101,18 +113,11 @@ installing/configuring web and database servers
 	</VirtualHost>
 	- Enable the host using sudo a2ensite FlaskApp
 	- sudo service apache2 restart
-15) Change the path for the client_secrets.json file everywhere
+17) Change the path for the client_secrets.json file everywhere
 	'/var/www/FlaskApp/FlaskApp/client_secrets.json'
-16) Make sure that the client secrets file matches the Authorized JavaScript origins on the credentials page.
+18) Make sure that the client secrets file matches the Authorized JavaScript origins on the credentials page.
 	- Add the IP address to the list, eg. by visiting https://console.cloud.google.com/apis/credentials
 	- Also update the client_secret.json file or redownload it after adding the IP by visiting the same URL
-17) Disable root login:
-	- run sudo nano/etc/ssh/sshd_config
-	- change the PermitRootLogin without-password to PermitRootLogin no
-	- Also make sure to uncomment the "PasswordAuthentication no" line
-18) Change the SSH port from 22 to 2200
-	- use sudo nano /etc/ssh/sshd_config and then change the Port 22 to Port 2200
-	- use sudo service ssh restart
-	- Make sure that port 2200 has been added to the external Lightsail firewall under the "Networking" tab.
-	- Make sure you remove SSH port 22 from the 'Networking' tab
+
+
 External references: https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
