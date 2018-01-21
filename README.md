@@ -28,7 +28,8 @@ installing/configuring web and database servers in AWS LightSail Ubuntu server.
 7) Disable root login:
 	- run sudo nano/etc/ssh/sshd_config
 	- change the PermitRootLogin without-password to PermitRootLogin no
-	- Also make sure to uncomment the "PasswordAuthentication no" line
+	- Also make sure to uncomment the "PasswordAuthentication no" line and restart the service using
+		- sudo service ssh restart
 	- Now login to the server using this command
 		- ssh -i ~/.ssh/myKey.rsa grader@18.218.171.145
 		- Now we can use the grader user to access the server and use sudo when needed.
