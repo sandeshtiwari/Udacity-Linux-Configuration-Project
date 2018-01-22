@@ -8,7 +8,8 @@ installing/configuring web and database servers in AWS LightSail Ubuntu server.
 	-Open the terminal and type chmod 600 ~/.ssh/LightsailDefaultPrivateKey-us-east-2.pem
 	-In your terminal type ssh -i ~/.ssh/LightsailDefaultPrivateKey-us-east-2.pem ubuntu@18.218.171.145
 	-Development environment
-		- Public IP - 18.218.171.145
+		- Public IP - 18.218.171.145 [Note: this project now completed so the this IP address will not
+			you to the applicaiton]
 		- Private Key(not provided)
 2) Create a new user named grader
 	- sudo adduser grader
